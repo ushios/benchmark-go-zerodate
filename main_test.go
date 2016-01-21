@@ -20,11 +20,10 @@ func BenchmarkZeroHourUsingFmt(b *testing.B) {
 }
 
 func BenchmarkZeroHourUsingFormat(b *testing.B) {
-	now := time.Now()
-	st := now.Format("2006-01-02 00:00:00 -0700 MST")
-	day, _ := time.Parse("2006-01-02 15:04:05 -0700 MST", st)
-
 	for i := 0; i < b.N; i++ {
+		now := time.Now()
+		st := now.Format("2006-01-02 00:00:00 -0700 MST")
+		day, _ := time.Parse("2006-01-02 15:04:05 -0700 MST", st)
 		if day.Day() != now.Day() {
 			b.Errorf("day not matched")
 		}
